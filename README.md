@@ -1,4 +1,4 @@
-# Macro-evolutionary Pangenomics: A *Plasmodium* Case Study in Galaxy
+# Macro-evolutionary Pangenomics: A *Plasmodium* Case Study
 
 This repository documents a case study performed on the **Galaxy platform**, testing the capabilities of population-level pangenomics tools (**MUM&Co** and **PGGB**) in a macro-evolutionary context.
 
