@@ -66,7 +66,7 @@ We evaluated both tools for their utility in macro-evolutionary studies:
 
 ### MUMento
 * **Pros:** Very fast, easy to install, great for global synteny visualization.
-* **Cons:** Hard to extract raw data for downstream analysis; cannot easily identify unique paths.
+* **Cons:** Hard to extract raw data for downstream analysis; cannot easily identify unique paths (e.g. telomeres).
 
 ### PGGB
 * **Pros:** Excellent data extraction, customizable, compatible with Bandage for graph viz, detects unique paths.
