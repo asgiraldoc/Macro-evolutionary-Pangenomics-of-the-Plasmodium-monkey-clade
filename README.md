@@ -56,7 +56,7 @@ We built a graph with a 90% identity threshold to identify deep homology.
 * **Core Genome:** Successfully identified conserved structural elements (centromere cores, RNA loci).
 * **Variable Regions:** The "shell" of the pangenome is enriched with multigene families (host-parasite interaction), showing where the species diverge most.
 
-[Download Analysis PDF](./results/pdf1.pdf)
+[Download Analysis PDF](./figures/pdf1.pdf)
 
 ---
 
