@@ -24,9 +24,8 @@ The analysis includes **10 genomes** from the *Plasmodium* monkey clade:
 ## 1. MUMento Analysis
 
 ### *P. coatneyi* Assembly Comparison (V1 vs V2)
-We compared the 2016 PacBio-only assembly (V1) against the V2 update (polished with Illumina).
+We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.org/10.1128/genomeA.00883-16)) against the V2 update (polished with Illumina).
 
-**Reference:** [Chien et al., 2016](https://doi.org/10.1128/genomeA.00883-16).
 
 * **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
 
