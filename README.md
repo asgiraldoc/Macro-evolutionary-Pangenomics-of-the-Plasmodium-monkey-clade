@@ -8,11 +8,11 @@ We analyzed the "monkey clade" of *Plasmodium*, focusing on the structural diffe
 
 The analysis includes **10 genomes** from the *Plasmodium* monkey clade:
 
-* ***P. coatneyi***\*\* (Hackeri):\*\* Used for assembly QC (comparison of V1 PacBio unpolished vs. V2 Hybrid polished).  
-* ***P. knowlesi***\*\*:\*\* H , A1H1.  
-* ***P. cynomolgi***\*\*:\*\* M.  
-* ***P. vivax***\*\*:\*\* MHC087, PAM, W1, P01.  
-* ***P. vivax***\*\*-like:\*\* SY43, SY56.
+* ***P. coatneyi*** (Hackeri): Used for assembly QC (comparison of V1 PacBio unpolished vs. V2 Hybrid polished).  
+* ***P. knowlesi***: H , A1H1.  
+* ***P. cynomolgi***: M.  
+* ***P. vivax***: MHC087, PAM, W1, P01.  
+* ***P. vivax***-like: SY43, SY56.
 
 ## **Tools Used**
 
