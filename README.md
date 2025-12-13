@@ -29,7 +29,6 @@ We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) acros
 
 We ran mumemto allowing unique matches (-f 1) that appear in at least 2 genomes (-k 2). This k value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level).
 
-**Command:**
 ```
 # General syntax  
 mumemto -f 1 -k 2 [list_of_fastas] -o [output_prefix]
@@ -40,26 +39,23 @@ mumemto -f 1 -k 2 P*.fasta -o output/pangenome_f1_k2
 #### **B. Visualization (Synteny Plot)**
 
 To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the --mode gapped option, which is better suited for distinct species comparisons than the default mode.
-
-**Command:**
-
+```
 mumemto viz -i output/pangenome_f1_k2   
     --filelist filelist.txt   
     --labels labels.txt   
     --mode gapped   
     --spacer 0.1   
     -o figures/pangenome_f1_k2.png
-
+```
 ### **Results**
 
 #### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
 
 We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.org/10.1128/genomeA.00883-16)) against the V2 update (polished with Illumina).
 
-**Command:**
-
+```
 mumemto Pcoat_v1.fasta Pcoat_v2.fasta -o output/assemblies
-
+```
 * **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
 
 *(Fig 1: High collinearity with indel-driven fragmentation)*
