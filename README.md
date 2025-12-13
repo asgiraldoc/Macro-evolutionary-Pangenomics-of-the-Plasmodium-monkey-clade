@@ -52,9 +52,13 @@ We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.
 
 ```
 mumemto Pcoat_v1.fasta Pcoat_v2.fasta -o output/assemblies
+mumemto viz -i output/assemblies --filelist filelist.txt --labels labels.txt  \
+            --mode gapped --spacer 0.1  -o figures/assemblies.png
+
 ```
 * **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
-
+ 
+![Figure 1: Coatneyi Alignment](./figures/fig1.png)
 *(Fig 1: High collinearity with indel-driven fragmentation)*
 
 #### **Clade-level Synteny**
@@ -62,8 +66,10 @@ mumemto Pcoat_v1.fasta Pcoat_v2.fasta -o output/assemblies
 We ran the all-vs-all comparison described in the workflow above across all species.
 
 * **Results:** MUMento provided very granular synteny results, outperforming gene-centric tools like GENESPACE (R package). We were able to detect syntenic blocks in both intergenic and intragenic regions.
+* 
+![Figure 2: Global Synteny](./figures/fig2.png)
 
-*(Fig 2: Granular synteny across the clade using --mode gapped)*
+*(Fig 2: Granular synteny across the clade)*
 
 ## **2. PGGB Analysis**
 
