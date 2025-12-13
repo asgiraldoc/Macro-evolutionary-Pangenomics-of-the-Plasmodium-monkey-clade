@@ -19,7 +19,7 @@ The analysis includes **10 genomes** from the *Plasmodium* monkey clade:
 1. **MUMento** (v1.3.4): For whole-genome alignment and synteny.  
 2. **PGGB** (v0.7.2): For variation graph construction.
 
-## **1\. MUMento Analysis**
+## **1. MUMento Analysis**
 
 We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) across the clade. This tool is generally used for intra-species pangenomes, but we adapted parameters for inter-species comparison.
 
@@ -27,39 +27,28 @@ We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) acros
 
 #### **A. Generating the Pangenome (MUM Finding)**
 
-We ran mumemto allowing unique matches (-f 1\) that appear in at least 2 genomes (-k 2). This k value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level).
+We ran mumemto allowing unique matches (-f 1) that appear in at least 2 genomes (-k 2). This k value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level).
 
 **Command:**
 
-\# General syntax  
-mumemto \-f 1 \-k 2 \[list\_of\_fastas\] \-o \[output\_prefix\]
+# General syntax  
+mumemto -f 1 -k 2 [list_of_fastas] -o [output_prefix]
 
-\# Exact execution for this study  
-mumemto \-f 1 \-k 2 \\  
-    PcoatH.fasta \\  
-    PcyM.fasta \\  
-    PknowH.fasta \\  
-    PknowA1H1.fasta \\  
-    PvivaxMHC087.fasta \\  
-    PvivaxPAM.fasta \\  
-    PvivaxW1.fasta \\  
-    PvivaxP01.fasta \\  
-    PvivaxLikeSY43.fasta \\  
-    PvivaxLikeSY56.fasta \\  
-    \-o output/pangenome\_f1\_k2
+# Exact execution for this study  
+mumemto -f 1 -k 2 P*.fasta -o output/pangenome_f1_k2
 
 #### **B. Visualization (Synteny Plot)**
 
-To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the \--mode gapped option, which is better suited for distinct species comparisons than the default mode.
+To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the --mode gapped option, which is better suited for distinct species comparisons than the default mode.
 
 **Command:**
 
-mumemto viz \-i output/pangenome\_f1\_k2 \\  
-    \--filelist filelist.txt \\  
-    \--labels labels.txt \\  
-    \--mode gapped \\  
-    \--spacer 0.1 \\  
-    \-o figures/pangenome\_f1\_k2.png
+mumemto viz -i output/pangenome_f1_k2   
+    --filelist filelist.txt   
+    --labels labels.txt   
+    --mode gapped   
+    --spacer 0.1   
+    -o figures/pangenome_f1_k2.png
 
 ### **Results**
 
@@ -69,7 +58,7 @@ We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.
 
 **Command:**
 
-mumemto Pcoat\_v1.fasta Pcoat\_v2.fasta \-o output/assemblies
+mumemto Pcoat_v1.fasta Pcoat_v2.fasta -o output/assemblies
 
 * **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
 
@@ -81,9 +70,9 @@ We ran the all-vs-all comparison described in the workflow above across all spec
 
 * **Results:** MUMento provided very granular synteny results, outperforming gene-centric tools like GENESPACE (R package). We were able to detect syntenic blocks in both intergenic and intragenic regions.
 
-*(Fig 2: Granular synteny across the clade using \--mode gapped)*
+*(Fig 2: Granular synteny across the clade using --mode gapped)*
 
-## **2\. PGGB Analysis**
+## **2. PGGB Analysis**
 
 *(Detailed commands for PGGB workflow to be added)*
 
@@ -94,7 +83,7 @@ Using Bandage to visualize the graph topology between *P. coatneyi* V1 and V2:
 * **Observation:** The graph forms "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.  
 * **Implication:** This indicates that the unpolished long-read assembly (V1) contains significant errors in low-complexity/repetitive regions, which are resolved in V2.
 
-### **Global Pangenome (\>90% Identity)**
+### **Global Pangenome (>90% Identity)**
 
 We built a graph with a 90% identity threshold to identify deep homology.
 
