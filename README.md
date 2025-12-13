@@ -66,7 +66,7 @@ mumemto viz -i output/assemblies --filelist filelist.txt --labels labels.txt  \
 We ran the all-vs-all comparison described in the workflow above across all species.
 
 * **Results:** MUMento provided very granular synteny results, outperforming gene-centric tools like GENESPACE (R package). We were able to detect syntenic blocks in both intergenic and intragenic regions.
-* 
+
 ![Figure 2: Global Synteny](./figures/fig2.png)
 
 *(Fig 2: Granular synteny across the clade)*
