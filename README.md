@@ -30,10 +30,7 @@ We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) acros
 We ran mumemto allowing unique matches (-f 1) that appear in at least 2 genomes (-k 2). This k value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level).
 
 ```
-# General syntax  
-mumemto -f 1 -k 2 [list_of_fastas] -o [output_prefix]
-
-# Exact execution for this study  
+# mumento execution for this study  
 mumemto -f 1 -k 2 P*.fasta -o output/pangenome_f1_k2
 ```
 #### **B. Visualization (Synteny Plot)**
