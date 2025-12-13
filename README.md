@@ -1,76 +1,121 @@
-# Macro-evolutionary Pangenomics: A *Plasmodium* Case Study
+# **Macro-evolutionary Pangenomics: A *Plasmodium* Case Study**
 
-This repository documents a case study testing the capabilities of population-level pangenomics tools (**MUM&Co** and **PGGB**) in a macro-evolutionary context.
+This repository documents a case study testing the capabilities of population-level pangenomics tools (**MUMento** and **PGGB**) in a macro-evolutionary context.
 
 We analyzed the "monkey clade" of *Plasmodium*, focusing on the structural differences between species and assessing genome assembly quality.
 
-## Dataset
+## **Dataset**
 
 The analysis includes **10 genomes** from the *Plasmodium* monkey clade:
 
-* ***P. coatneyi* (Hackeri):** Used for assembly QC (comparison of V1 PacBio unpolished vs. V2 Hybrid polished).
-* ***P. knowlesi*:** H , A1H1.
-* ***P. cynomolgi*:** M.
-* ***P. vivax*:** MHC087, PAM, W1, P01.
-* ***P. vivax*-like:** SY43, SY56
+* ***P. coatneyi***\*\* (Hackeri):\*\* Used for assembly QC (comparison of V1 PacBio unpolished vs. V2 Hybrid polished).  
+* ***P. knowlesi***\*\*:\*\* H , A1H1.  
+* ***P. cynomolgi***\*\*:\*\* M.  
+* ***P. vivax***\*\*:\*\* MHC087, PAM, W1, P01.  
+* ***P. vivax***\*\*-like:\*\* SY43, SY56.
 
-## Tools Used
+## **Tools Used**
 
-1.  **MUMento** (v1.3.4): For whole-genome alignment and synteny.
-2.  **PGGB** (v0.7.2): For variation graph construction.
+1. **MUMento** (v1.3.4): For whole-genome alignment and synteny.  
+2. **PGGB** (v0.7.2): For variation graph construction.
 
----
+## **1\. MUMento Analysis**
 
-## 1. MUMento Analysis
+We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) across the clade. This tool is generally used for intra-species pangenomes, but we adapted parameters for inter-species comparison.
 
-### *P. coatneyi* Assembly Comparison (V1 vs V2)
+### **Workflow & Commands**
+
+#### **A. Generating the Pangenome (MUM Finding)**
+
+We ran mumemto allowing unique matches (-f 1\) that appear in at least 2 genomes (-k 2). This k value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level).
+
+**Command:**
+
+\# General syntax  
+mumemto \-f 1 \-k 2 \[list\_of\_fastas\] \-o \[output\_prefix\]
+
+\# Exact execution for this study  
+mumemto \-f 1 \-k 2 \\  
+    PcoatH.fasta \\  
+    PcyM.fasta \\  
+    PknowH.fasta \\  
+    PknowA1H1.fasta \\  
+    PvivaxMHC087.fasta \\  
+    PvivaxPAM.fasta \\  
+    PvivaxW1.fasta \\  
+    PvivaxP01.fasta \\  
+    PvivaxLikeSY43.fasta \\  
+    PvivaxLikeSY56.fasta \\  
+    \-o output/pangenome\_f1\_k2
+
+#### **B. Visualization (Synteny Plot)**
+
+To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the \--mode gapped option, which is better suited for distinct species comparisons than the default mode.
+
+**Command:**
+
+mumemto viz \-i output/pangenome\_f1\_k2 \\  
+    \--filelist filelist.txt \\  
+    \--labels labels.txt \\  
+    \--mode gapped \\  
+    \--spacer 0.1 \\  
+    \-o figures/pangenome\_f1\_k2.png
+
+### **Results**
+
+#### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
+
 We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.org/10.1128/genomeA.00883-16)) against the V2 update (polished with Illumina).
 
+**Command:**
+
+mumemto Pcoat\_v1.fasta Pcoat\_v2.fasta \-o output/assemblies
 
 * **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
 
-![Figure 1: Coatneyi Alignment](./figures/fig1.png)
 *(Fig 1: High collinearity with indel-driven fragmentation)*
 
-### Clade-level Synteny
-We ran an all-vs-all comparison across all species.
+#### **Clade-level Synteny**
+
+We ran the all-vs-all comparison described in the workflow above across all species.
 
 * **Results:** MUMento provided very granular synteny results, outperforming gene-centric tools like GENESPACE (R package). We were able to detect syntenic blocks in both intergenic and intragenic regions.
 
-![Figure 2: Global Synteny](./figures/fig2.png)
-*(Fig 2: Granular synteny across the clade)*
+*(Fig 2: Granular synteny across the clade using \--mode gapped)*
 
----
+## **2\. PGGB Analysis**
 
-## 2. PGGB Analysis
+*(Detailed commands for PGGB workflow to be added)*
 
-### Variation Graphs & Assembly Errors
+### **Variation Graphs & Assembly Errors**
+
 Using Bandage to visualize the graph topology between *P. coatneyi* V1 and V2:
 
-* **Observation:** The graph forms "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.
+* **Observation:** The graph forms "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.  
 * **Implication:** This indicates that the unpolished long-read assembly (V1) contains significant errors in low-complexity/repetitive regions, which are resolved in V2.
 
-### Global Pangenome (>90% Identity)
+### **Global Pangenome (\>90% Identity)**
+
 We built a graph with a 90% identity threshold to identify deep homology.
 
-* **Core Genome:** Successfully identified conserved structural elements (centromere cores, RNA loci).
+* **Core Genome:** Successfully identified conserved structural elements (centromere cores, RNA loci).  
 * **Variable Regions:** The "shell" of the pangenome is enriched with multigene families (host-parasite interaction), showing where the species diverge most.
 
-[See slides PDF](./figures/pdf1.pdf)
+[See slides PDF](https://www.google.com/search?q=./figures/pdf1.pdf)
 
----
-
-## Tool Comparison & Conclusions
+## **Tool Comparison & Conclusions**
 
 We evaluated both tools for their utility in macro-evolutionary studies:
 
-### MUMento
-* **Pros:** Very fast, easy to install, great for global synteny visualization.
+### **MUMento**
+
+* **Pros:** Very fast, easy to install, great for global synteny visualization.  
 * **Cons:** Hard to extract raw data for downstream analysis; cannot easily identify unique paths (e.g. telomeres).
 
-### PGGB
-* **Pros:** Excellent data extraction, customizable, compatible with Bandage for graph viz, detects unique paths.
+### **PGGB**
+
+* **Pros:** Excellent data extraction, customizable, compatible with Bandage for graph viz, detects unique paths.  
 * **Cons:** Computationally intensive (speed depends heavily on data size).
 
-**Summary:**
-While these tools are designed for microevolutionary analisys, they are highly effective for inter-species analysis. **MUMento** is ideal for quick synteny checks, while **PGGB** is better suited for deep structural analysis and dissecting complex gene families.
+Summary:  
+While these tools are designed for microevolutionary analysis, they are highly effective for inter-species analysis. MUMento is ideal for quick synteny checks, while PGGB is better suited for deep structural analysis and dissecting complex gene families.
