@@ -69,20 +69,20 @@ mumemto viz -i output/pangenome_f1_k2
 
 ## **2. PGGB Analysis**
 
-*(Detailed commands for PGGB workflow to be added)*
+To test the capabilities of PGGB, we applied it in two distinct contexts: comparative assembly validation and the macro-evolutionary extraction of centromeric regions—loci typically difficult to resolve due to their GC content (5-7%) and repetitive motifs. Using Bandage to visualize and annotate these results. 
 
-### **Variation Graphs & Assembly Errors**
+### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
+We constructed a graph comparing the unpolished (V1) and polished (V2) assemblies to identify structural discrepancies. We adjusted the parameters to a 99% identity threshold (`-p 99`) and a 1kbp segment length (`-s 1000`)
 
-Using Bandage to visualize the graph topology between *P. coatneyi* V1 and V2:
-
-* **Observation:** The graph forms "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.  
+* **Observation:** The graph forms many and very small "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.  
 * **Implication:** This indicates that the unpolished long-read assembly (V1) contains significant errors in low-complexity/repetitive regions, which are resolved in V2.
 
-### **Global Pangenome (>90% Identity)**
+### **Global Pangenome (>85% Identity)**
 
-We built a graph with a 90% identity threshold to identify deep homology.
+For the macro-evolutionary analysis, we executed PGGB on a per-chromosome basis using the script `run_pggb.sh`. We adjusted the parameters to a 85% identity threshold (`-p 85`) and a 5kbp segment length (`-s 5000`); relaxing the identity threshold allows the graph to capture distant evolutionary relationships (deep homology), while a larger segment length prioritizes macro-synteny over micro-variation.
 
-* **Core Genome:** Successfully identified conserved structural elements (centromere cores, RNA loci).  
+* **Core Genome:** Successfully identified conserved structural elements (centromere cores, RNA loci). Using `extract_centromeres.sh`, we leveraged ODGI to project the known centromere coordinates of the reference (*P. vivax* P01) onto the pangenome graph.
+  
 * **Variable Regions:** The "shell" of the pangenome is enriched with multigene families (host-parasite interaction), showing where the species diverge most.
 
 [See slides PDF](https://www.google.com/search?q=./figures/pdf1.pdf)
