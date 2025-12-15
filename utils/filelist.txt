@@ -1,0 +1,10 @@
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PcoatH.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PKNH.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PknowA1H1.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PcyM.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PvSY43.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PvSY56.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PvMHC087.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PvPAM.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PvW1.fasta
+/home/asgiraldoc/PcoatPknow/pangenomes/chromosome_fastas5/Pcoat_version_pggb/clade/PvP01.fasta
