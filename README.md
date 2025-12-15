@@ -83,7 +83,7 @@ For the macro-evolutionary analysis, we executed PGGB on a per-chromosome basis 
 
 * **Core Genome:** Successfully identified conserved structural elements (centromere cores, RNA loci). Using `extract_centromeres.sh`, we leveraged ODGI to project the known centromere coordinates of the reference (*P. vivax* P01) onto the pangenome graph.
   
-* **Variable Regions:** The "shell" of the pangenome is enriched with multigene families (host-parasite interaction), showing where the species diverge most.
+* **Variable Regions:** The "shell" of the pangenome is enriched with multigene families (host-parasite interaction), subtelomere and telomere regions, etc.,  showing where the species diverge most.
 
 [See slides PDF](https://www.google.com/search?q=./figures/pdf1.pdf)
 
