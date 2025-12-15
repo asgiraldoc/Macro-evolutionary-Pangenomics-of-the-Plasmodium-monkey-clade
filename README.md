@@ -25,7 +25,7 @@ We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) acros
 
 We ran mumemto allowing unique matches (-f 1) that appear in at least 2 genomes (-k 2). This `k` value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level). All other parameters for assembly comparison remained at their default values.
 
-To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the --mode gapped option, which is better suited for distinct species comparisons than the default mode. 
+To visualize the synteny, we used the viz module. We prepared a `filelist.txt` (listing file paths) and `labels.txt` (clean species names) for better readability. We utilized the `--mode` gapped option, which is better suited for distinct species comparisons than the default mode. 
 
 
 ### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
