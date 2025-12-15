@@ -21,22 +21,39 @@ The analysis includes **10 genomes** from the *Plasmodium* monkey clade:
 
 ## **1. MUMento Analysis**
 
-We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) across the clade. This tool is generally used for intra-species pangenomes, but we adapted parameters for inter-species comparison.
+We utilized **MUMento** (v1.3.4) to identify maximal unique matches (MUMs) across the clade. This tool is generally used for intra-species pangenomes, but we adapted for inter-species comparison.
 
-### **Workflow & Commands**
+We ran mumemto allowing unique matches (-f 1) that appear in at least 2 genomes (-k 2). This `k` value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level). All other parameters for assembly comparison remained at their default values.
 
-#### **A. Generating the Pangenome (MUM Finding)**
+To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the --mode gapped option, which is better suited for distinct species comparisons than the default mode. 
 
-We ran mumemto allowing unique matches (-f 1) that appear in at least 2 genomes (-k 2). This k value is crucial for macro-evolutionary studies, as it allows for the identification of conserved regions without requiring them to be present in every single species (which would be too strict for this divergence level).
+
+### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
+
+We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.org/10.1128/genomeA.00883-16)) against our V2 update (polished with Illumina).
+```
+mumemto Pcoat*.fasta -o output/assemblies
+
+mumemto viz -i output/assemblies   
+    --filelist filelist.txt   
+    --labels labels.txt   
+    --mode gapped   
+    --spacer 0.1   
+    -o figures/assemblies.png
+```
+
+* **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
+ 
+![Figure 1: Coatneyi Alignment](./figures/fig1.png)
+*(Fig 1: High collinearity with indel-driven fragmentation)*
+
+### **Clade-level Synteny**
+
+We ran the all-vs-all comparison described in the workflow above across all species.
 
 ```
-# mumento execution for this study  
 mumemto -f 1 -k 2 P*.fasta -o output/pangenome_f1_k2
-```
-#### **B. Visualization (Synteny Plot)**
 
-To visualize the synteny, we used the viz module. We prepared a filelist.txt (listing file paths) and labels.txt (clean species names) for better readability. We utilized the --mode gapped option, which is better suited for distinct species comparisons than the default mode.
-```
 mumemto viz -i output/pangenome_f1_k2   
     --filelist filelist.txt   
     --labels labels.txt   
@@ -44,27 +61,6 @@ mumemto viz -i output/pangenome_f1_k2
     --spacer 0.1   
     -o figures/pangenome_f1_k2.png
 ```
-### **Results**
-
-#### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
-
-We compared the 2016 PacBio-only assembly (V1; [Chien et al., 2016](https://doi.org/10.1128/genomeA.00883-16)) against the V2 update (polished with Illumina).
-
-```
-mumemto Pcoat_v1.fasta Pcoat_v2.fasta -o output/assemblies
-mumemto viz -i output/assemblies --filelist filelist.txt --labels labels.txt  \
-            --mode gapped --spacer 0.1  -o figures/assemblies.png
-
-```
-* **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
- 
-![Figure 1: Coatneyi Alignment](./figures/fig1.png)
-*(Fig 1: High collinearity with indel-driven fragmentation)*
-
-#### **Clade-level Synteny**
-
-We ran the all-vs-all comparison described in the workflow above across all species.
-
 * **Results:** MUMento provided very granular synteny results, outperforming gene-centric tools like GENESPACE (R package). We were able to detect syntenic blocks in both intergenic and intragenic regions.
 
 ![Figure 2: Global Synteny](./figures/fig2.png)
