@@ -69,7 +69,7 @@ mumemto viz -i output/pangenome_f1_k2
 
 ## **2. PGGB Analysis**
 
-To test the capabilities of PGGB, we applied it in two distinct contexts: comparative assembly validation and the macro-evolutionary extraction of centromeric regions—loci typically difficult to resolve due to their GC content (5-7%) and repetitive motifs. Using Bandage to visualize and annotate these results. 
+To test the capabilities of PGGB, we applied it in two distinct contexts: comparative assembly validation and the macro-evolutionary extraction of centromeric regions—loci typically difficult to resolve due to their GC content (5-7%) and repetitive motifs. Using *Bandage* and *seqkit* to visualize and annotate these results. 
 
 ### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
 We constructed a graph comparing the unpolished (V1) and polished (V2) assemblies to identify structural discrepancies. We adjusted the parameters to a 99% identity threshold (`-p 99`) and a 1kbp segment length (`-s 1000`)
