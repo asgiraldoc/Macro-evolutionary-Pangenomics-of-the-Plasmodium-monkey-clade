@@ -44,7 +44,7 @@ mumemto viz -i output/assemblies
 
 * **Results:** The alignment shows identical collinearity for most chromosomes (except corrections in Chr 12 and 14). However, we observe high "fragmentation" (variation) in the alignment. This is not structural variation but rather the massive correction of indels introduced by the polishing step. This confirms the qualitative superiority of the V2 assembly.
  
-![Figure 1: Coatneyi Alignment](./figures/fig1.png)
+![Figure 1: *P. coatneyi* assemblies MUMento comparison](./figures/fig1.png)
 *(Fig 1: High collinearity with indel-driven fragmentation)*
 
 ### **Clade-level Synteny**
@@ -73,6 +73,9 @@ To test the capabilities of PGGB, we applied it in two distinct contexts: compar
 
 ### ***P. coatneyi*** **Assembly Comparison (V1 vs V2)**
 We constructed a graph comparing the unpolished (V1) and polished (V2) assemblies to identify structural discrepancies. We adjusted the parameters to a 99% identity threshold (`-p 99`) and a 1kbp segment length (`-s 1000`)
+
+![Figure 3: *P. coatneyi* assemblies PGGB comparison](./figures/fig3.png)
+*(Fig 3: High number of bubbles enriched in intergenic and intronic regions)*
 
 * **Observation:** The graph forms many and very small "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.  
 * **Implication:** This indicates that the unpolished long-read assembly (V1) contains significant errors in low-complexity/repetitive regions, which are resolved in V2.
