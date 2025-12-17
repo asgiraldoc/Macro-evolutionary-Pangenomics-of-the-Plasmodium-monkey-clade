@@ -75,7 +75,7 @@ To test the capabilities of PGGB, we applied it in two distinct contexts: compar
 We constructed a graph comparing the unpolished (V1) and polished (V2) assemblies to identify structural discrepancies. We adjusted the parameters to a 99% identity threshold (`-p 99`) and a 1kbp segment length (`-s 1000`)
 
 ![Figure 3: *P. coatneyi* assemblies PGGB comparison](./figures/fig3.png)
-*(Fig 3: High number of bubbles enriched in intergenic and intronic regions)*
+*(Fig 3: High number of bubbles enriched in intergenic and intronic regions (Bandage viz))*
 
 * **Observation:** The graph forms many and very small "bubbles" (diverging paths) representing sequence variation. These bubbles are heavily concentrated in **intergenic and intronic regions**.  
 * **Implication:** This indicates that the unpolished long-read assembly (V1) contains significant errors in low-complexity/repetitive regions, which are resolved in V2.
